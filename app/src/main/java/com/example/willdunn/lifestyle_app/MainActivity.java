@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        requestPermission();
+
         client = LocationServices.getFusedLocationProviderClient(this); //grab lat/lon from user
         Button btn = findViewById(R.id.btn_update_Profile);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -49,11 +51,16 @@ public class MainActivity extends AppCompatActivity {
                             // for ActivityCompat#requestPermissions for more details.
                             return;
                         }
+                        //todo this will need to be changed - goes directly to hikes after profile setup. Needs
                         client.getLastLocation().addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
                             @Override
                             public void onSuccess(Location location) {
                                 if(location != null){
-                                    userLocation = location.toString(); //TODO this might need to be changed if it grabs tons of info
+                                    userLocation = "" + location.getLatitude() + "," + location.getLongitude();
+                                    //Start an activity and pass the EditText string to it.
+                                    Intent messageIntent = new Intent(MainActivity.this, MapsActivity.class);
+                                    messageIntent.putExtra("BTN_STRING_LOC",userLocation);
+                                    MainActivity.this.startActivity(messageIntent); //this is not needed here, but is helpful for readability
                                 } else {
                                     Toast.makeText(MainActivity.this,"Could not get your location",Toast.LENGTH_SHORT).show();
                                 }

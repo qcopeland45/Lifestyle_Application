@@ -25,7 +25,7 @@ public class MapsActivity extends AppCompatActivity {
         Intent receivedIntent = getIntent();
 
         //Get the string data of the location
-        userLocation = receivedIntent.getStringExtra("BTN_STRING_LOC");
+        userLocation = "geo:" + receivedIntent.getStringExtra("BTN_STRING_LOC") + "?q=";
 
         if(userLocation.isEmpty()){
             Toast.makeText(MapsActivity.this, "No location received", Toast.LENGTH_SHORT).show();
