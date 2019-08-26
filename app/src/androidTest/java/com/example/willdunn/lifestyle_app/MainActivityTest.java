@@ -29,4 +29,19 @@ public class MainActivityTest {
         assertNotNull(view);
     }
 
+    /*test to see if the elements are loading correctly*/
+
+
+
+    /*exhaustive randomization tests to ensure the profile can handle random entries*/
+
+
+
+    /*tests to validate that only name is needed to be entered when a profile is created*/
+
+
+
+    /*ensure identical functionality when orientation changes; use setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);*/
+
+
 }
